@@ -43,18 +43,28 @@ public class StatementPrinter {
                     thisAmount = Constants.COMEDY_BASE_AMOUNT;
                     if (p.audience > Constants.COMEDY_AUDIENCE_THRESHOLD) {
                         thisAmount += Constants.COMEDY_OVER_BASE_CAPACITY_AMOUNT
-                                + (Constants.COMEDY_OVER_BASE_CAPACITY_PER_PERSON
-                                * (p.audience - Constants.COMEDY_AUDIENCE_THRESHOLD));
+                                + Constants.COMEDY_OVER_BASE_CAPACITY_PER_PERSON
+                                * (p.audience - Constants.COMEDY_AUDIENCE_THRESHOLD);
                     }
                     thisAmount += Constants.COMEDY_AMOUNT_PER_AUDIENCE * p.audience;
+                    break;
+                case "history":
+                    thisAmount = Constants.HISTORY_BASE_AMOUNT;
+                    if (p.audience > Constants.HISTORY_AUDIENCE_THRESHOLD) {
+                        thisAmount += Constants.HISTORY_OVER_BASE_CAPACITY_PER_PERSON
+                                * (p.audience - Constants.HISTORY_AUDIENCE_THRESHOLD);
+                    }
                     break;
                 default:
                     throw new RuntimeException(String.format("unknown type: %s", play.type));
             }
 
             // add volume credits
-            volumeCredits += Math.max(p.audience - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
-            // add extra credit for every five comedy attendees
+            if ("history".equals(play.type)) {
+                volumeCredits += Math.max(p.audience - Constants.HISTORY_VOLUME_CREDIT_THRESHOLD, 0);
+            } else {
+                volumeCredits += Math.max(p.audience - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
+            }            // add extra credit for every five comedy attendees
             if ("comedy".equals(play.type)) volumeCredits += p.audience / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
 
             // print line for this order
