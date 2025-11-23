@@ -31,12 +31,12 @@ public class StatementPrinter {
         for (Performance p : invoice.getPerformances()) {
             Play play = plays.get(p.playID);
 
-            int thisAmount = 0;
+            int thisAmount;
             switch (play.type) {
                 case "tragedy":
-                    thisAmount = 40000;
+                    thisAmount = Constants.TRAGEDY_BASE_AMOUNT;
                     if (p.audience > Constants.TRAGEDY_AUDIENCE_THRESHOLD) {
-                        thisAmount += 1000 * (p.audience - 30);
+                        thisAmount += Constants.TRAGEDY_OVER_BASE_CAPACITY_PER_PERSON * (p.audience - 30);
                     }
                     break;
                 case "comedy":
@@ -58,10 +58,10 @@ public class StatementPrinter {
             if ("comedy".equals(play.type)) volumeCredits += p.audience / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
 
             // print line for this order
-            result.append(String.format("  %s: %s (%s seats)%n", play.name, frmt.format(thisAmount / 100), p.audience));
+            result.append(String.format("  %s: %s (%s seats)%n", play.name, frmt.format(thisAmount / Constants.PERCENT_FACTOR), p.audience));
             totalAmount += thisAmount;
         }
-        result.append(String.format("Amount owed is %s%n", frmt.format(totalAmount / 100)));
+        result.append(String.format("Amount owed is %s%n", frmt.format(totalAmount / Constants.PERCENT_FACTOR)));
         result.append(String.format("You earned %s credits%n", volumeCredits));
         return result.toString();
     }
