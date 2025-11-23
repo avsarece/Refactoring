@@ -1,0 +1,4 @@
+3c584ae (HEAD -> main) Did Task 1.1
+0c55cc3 Made use of the constants included in history
+41b0e43 Made use of the constants included in tragedy
+55d77eb (origin/main, origin/HEAD) Initial commit
