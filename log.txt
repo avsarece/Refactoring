@@ -2,3 +2,9 @@
 0c55cc3 Made use of the constants included in history
 41b0e43 Made use of the constants included in tragedy
 55d77eb (origin/main, origin/HEAD) Initial commit
+f858c91 (HEAD -> main) Refactoring and other stuff
+d8d5fe6 Task 1.2
+3c584ae Did Task 1.1
+0c55cc3 Made use of the constants included in history
+41b0e43 Made use of the constants included in tragedy
+55d77eb (origin/main, origin/HEAD) Initial commit
