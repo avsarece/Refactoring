@@ -1,4 +1,6 @@
-70a9752 (HEAD -> main) Did usd converting
+1267215 (HEAD -> main) Did the for loops
+edcc3da Task 2.3
+70a9752 Did usd converting
 e032efc Task 2.2
 c343f1b Added helper getVolumeCredits
 63c7401 Task 2.1
