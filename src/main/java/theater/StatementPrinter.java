@@ -32,19 +32,7 @@ public class StatementPrinter {
         for (Performance p : invoice.getPerformances()) {
 
             // add volume credits
-            if ("comedy".equals(getPlay(p).getType())) {
-                volumeCredits += p.getAudience() / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
-            }
-            if ("history".equals(getPlay(p).getType())) {
-                volumeCredits += Math.max(p.getAudience() - Constants.HISTORY_VOLUME_CREDIT_THRESHOLD, 0);
-            }
-            if ("pastoral".equals(getPlay(p).getType())) {
-                volumeCredits += Math.max(p.getAudience() - Constants.PASTORAL_VOLUME_CREDIT_THRESHOLD, 0);
-            }
-            // add extra credit for every five comedy attendees
-            else {
-                volumeCredits += Math.max(p.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
-            }
+            volumeCredits += getVolumeCredits(p);
 
             // print line for this order
             result.append(String.format("  %s: %s (%s seats)%n", getPlay(p).getName(),
@@ -55,6 +43,25 @@ public class StatementPrinter {
         );
         result.append(String.format("You earned %s credits%n", volumeCredits));
         return result.toString();
+    }
+
+    private int getVolumeCredits(Performance performance) {
+        int result = 0;
+        result += Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
+        if ("comedy".equals(getPlay(performance).getType())) {
+            result += performance.getAudience() / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
+        }
+        // HISTORY rule (if your assignment requires this)
+        if ("history".equals(getPlay(performance).getType())) {
+            result += Math.max(performance.getAudience() - Constants.HISTORY_VOLUME_CREDIT_THRESHOLD, 0);
+        }
+
+        // PASTORAL rule (if required)
+        if ("pastoral".equals(getPlay(performance).getType())) {
+            result += Math.max(performance.getAudience() - Constants.PASTORAL_VOLUME_CREDIT_THRESHOLD, 0);
+        }
+
+        return result;
     }
 
     private Play getPlay(Performance performance) {
