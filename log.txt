@@ -1,4 +1,5 @@
-1267215 (HEAD -> main) Did the for loops
+e1bd3f5 (HEAD -> main, origin/main, origin/HEAD) Task 2.4
+1267215 Did the for loops
 edcc3da Task 2.3
 70a9752 Did usd converting
 e032efc Task 2.2
@@ -9,4 +10,4 @@ d8d5fe6 Task 1.2
 3c584ae Did Task 1.1
 0c55cc3 Made use of the constants included in history
 41b0e43 Made use of the constants included in tragedy
-55d77eb (origin/main, origin/HEAD) Initial commit
+55d77eb Initial commit
