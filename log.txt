@@ -1,4 +1,6 @@
-c343f1b (HEAD -> main) Added helper getVolumeCredits
+70a9752 (HEAD -> main) Did usd converting
+e032efc Task 2.2
+c343f1b Added helper getVolumeCredits
 63c7401 Task 2.1
 f858c91 Refactoring and other stuff
 d8d5fe6 Task 1.2
